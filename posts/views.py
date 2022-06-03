@@ -1,7 +1,7 @@
 from rest_framework import generics
 
-from .models import Post
-from .serializers import PostSerializer
+from .models import Site, Post, Item
+from .serializers import SiteSerializer, PostSerializer, ItemSerializer
 
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
@@ -10,4 +10,19 @@ class PostList(generics.ListCreateAPIView):
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-# Create your views here.
+
+class SiteList(generics.ListCreateAPIView):
+    queryset = Site.objects.all()
+    serializer_class = SiteSerializer
+
+class SiteDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Site.objects.all()
+    serializer_class = SiteSerializer
+
+class ItemList(generics.ListCreateAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+
+class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
