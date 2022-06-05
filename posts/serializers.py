@@ -41,6 +41,7 @@ class ItemSerializer(serializers.ModelSerializer):
 
 class PostSerializerExtended(serializers.ModelSerializer):
     items = ItemSerializer(source='item_set', many=True)
+    image = serializers.ImageField(required=False)
     class Meta:
         fields = (
             "id",
