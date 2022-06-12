@@ -1,0 +1,28 @@
+# version: "3.9"
+
+# services:
+#   web:
+#     build: .
+#     command: python /usr/src/app/manage.py runserver 0.0.0.0:2000
+#     volumes:
+#       - .:/usr/src/app/code
+#     ports:
+#       - "2000:2000"
+  #   depends_on:
+  #     - db
+  # db:
+  #   image: postgres:13
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data/
+  #   environment:
+  #     - "POSTGRES_HOST_AUTH_METHOD=trust"
+
+services:
+  web:
+    build: .
+    ports:
+      - "2000:2000"
+    command: python manage.py runserver 0.0.0.0:2000
+    volumes:
+      - .:/code
+

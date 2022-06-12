@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -25,7 +24,7 @@ SECRET_KEY = 'django-insecure-oo$^sz9mo%(4@4rnjs9bnl(zv8zijlb=xz*!=-4)r4l))*kyfg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0','localhost','127.0.0.1']
 
 
 # Application definition
@@ -64,7 +63,10 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = (
     "http://localhost:3000",
-    "http://localhost:8000"
+    "http://localhost:8000",
+    "http://localhost:9876",
+    "http://localhost:4000",
+    "http://localhost:65103"
 )
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
@@ -93,6 +95,16 @@ WSGI_APPLICATION = 'LocalProduce.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'dipostgreste3',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'db', # Set in docker-compose.yml
+#         'PORT': 5432, # default postgres port
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -137,9 +149,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
-MEDIA_URL = '/api/v1/'
+# STATIC_URL = '/static/'
+# STATIC_FOLDER = 'static'
+# MEDIA_FOLDER = 'media'
+
+# STATICFILES_DIRS = [os.path.join(BASE_DIR,STATIC_FOLDER),]
+# MEDIAFILES_DIRS = [os.path.join(BASE_DIR,MEDIA_FOLDER),]
+# # STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
+# # MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
+# MEDIA_URL = '/api/v1/'
+
+STATIC_URL = '/static/'
+
+# Integration for static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.2/howto/static-files/
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/uploads/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
