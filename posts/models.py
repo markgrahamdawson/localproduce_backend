@@ -1,8 +1,12 @@
 from django.conf import settings
 from django.db import models
+import uuid
 
 class Site(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False)
     name = models.CharField(max_length=50)
     description = models.TextField(default=None)
     lat = models.DecimalField(max_digits=9, decimal_places=6)
@@ -17,7 +21,10 @@ def upload_to(instance, filename):
     return 'images/{filename}'.format(filename=filename)
 
 class Post(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False)
     message = models.TextField(default=None)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
@@ -27,7 +34,10 @@ class Post(models.Model):
         return str(self.site)+'_'+str(self.created_at)
 
 class Item(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False)
     item = models.CharField(max_length=50)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
