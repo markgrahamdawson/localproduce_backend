@@ -3,6 +3,9 @@ from django.urls import path
 from .views import SiteList, SiteDetail, PostList, PostDetail, SiteDetailExtended, ItemList, ItemDetail
 
 urlpatterns = [
+    # Django admin
+    path("anything-but-admin/", admin.site.urls),
+    # Local apps
     path("post/<uuid:pk>/", PostDetail.as_view(), name="post_detail"),
     path("post/",PostList.as_view(), name="post_list"),
     path("site/<uuid:pk>/", SiteDetail.as_view(), name="site_detail"),
